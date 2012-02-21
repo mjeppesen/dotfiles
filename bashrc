@@ -1,2 +1,2 @@
-export PS1="\u@\h \W $ "
-set -o vi
+export PS1="\W $ "
+set -o vi # vim keybindings
