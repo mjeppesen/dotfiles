@@ -13,3 +13,5 @@ fi
 # make terminal vim Macvim (until I get 'brew install macvim' to work)
 alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 alias vi=/Applications/MacVim.app/Contents/MacOS/Vim
+
+export JRUBY_OPTS=--1.9 # should this be here?
