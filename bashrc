@@ -3,6 +3,7 @@ set -o vi # vim keybindings
 
 export PATH=/usr/local/bin:$PATH 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$PATH:/usr/local/share/npm/bin # Node package manager
 
 export EDITOR='vi -f'
 
@@ -14,4 +15,6 @@ fi
 alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 alias vi=/Applications/MacVim.app/Contents/MacOS/Vim
 
-export JRUBY_OPTS=--1.9 # should this be here?
+HISTSIZE=10000
+HISTFILESIZE=10000
+HISTCONTROL=ignoredups
