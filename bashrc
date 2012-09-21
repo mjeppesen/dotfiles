@@ -1,7 +1,7 @@
 export PS1="\W $ "
 set -o vi # vim keybindings
 
-export PATH=/usr/local/bin:$PATH 
+export PATH=/usr/local/bin:$PATH
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:/usr/local/share/npm/bin # Node package manager
 
@@ -15,6 +15,12 @@ fi
 alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 alias vi=/Applications/MacVim.app/Contents/MacOS/Vim
 
-HISTSIZE=10000
-HISTFILESIZE=10000
-HISTCONTROL=ignoredups
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+export HISTCONTROL=ignoredups
+export HISTFILE=/Users/matt/.bash_history_jeppesen
+
+# start autojump (usage: type j)
+if [ -f $(brew --prefix)/etc/autojump ]; then
+  source $(brew --prefix)/etc/autojump
+fi
