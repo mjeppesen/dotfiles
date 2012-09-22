@@ -1,7 +1,7 @@
 # Configuration dotfiles
 
 Usage:
-    source ./make_links
+    `source ./make_links`
 
 It will create a symbolic links if it does not exist.
 
