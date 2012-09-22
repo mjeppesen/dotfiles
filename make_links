@@ -1,23 +1,24 @@
 #!/usr/bin/env bash
 
 (
-  list_source_dotfiles() { ls | grep -v $BASH_SOURCE ;}
+  list_source_dotfiles() { ls | grep -v $BASH_SOURCE | grep -v 'README.md' ;}
 
   target_full_path() { echo ~/.$1; }
 
-  source_full_path() { $(find `pwd` -name $file); }
+  source_full_path() { find `pwd` -name $1; }
 
   make_symbolic_link() { ln -s $SOURCE $HIDDEN_NAME; }
 
   list_source_dotfiles | while read file; do
     SOURCE=$(source_full_path $file)
-    TARGET=$(target_name $file)
+    TARGET=$(target_full_path $file)
 
     if [[ ! -e $TARGET ]]; then
       make_symbolic_link
     elif [[ -L $TARGET && $(readlink $TARGET) == $SOURCE ]]; then
       echo $TARGET: ok
     else
+      echo $SOURCE
       echo $TARGET: NOT ok
     fi
   done
