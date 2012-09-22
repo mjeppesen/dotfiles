@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 (
-  list_source_dotfiles() { ls | grep -v $BASH_SOURCE | grep -v 'README.md' ;}
+  list_source_dotfiles() { ls | grep -v 'make_links' | grep -v 'README.md' ;}
 
   target_full_path() { echo ~/.$1; }
 
   source_full_path() { find `pwd` -name $1; }
 
-  make_symbolic_link() { ln -s $SOURCE $HIDDEN_NAME; }
+  make_symbolic_link() { ln -s $SOURCE $TARGET; }
 
   list_source_dotfiles | while read file; do
     SOURCE=$(source_full_path $file)
@@ -15,6 +15,7 @@
 
     if [[ ! -e $TARGET ]]; then
       make_symbolic_link
+      echo "$TARGET: symbolic link created"
     elif [[ -L $TARGET && $(readlink $TARGET) == $SOURCE ]]; then
       echo $TARGET: ok
     else
