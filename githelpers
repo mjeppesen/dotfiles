@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# thanks to Gary Bernhardt!
+# https://www.destroyallsoftware.com/screencasts/catalog/pretty-git-logs
+
 HASH="%C(yellow dim)%h%C(reset)"
 RELATIVE_TIME="%C(dim green)%ar%C(reset)"
 AUTHOR="%C(dim blue)%an%C(reset)"
