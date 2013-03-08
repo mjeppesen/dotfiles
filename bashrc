@@ -21,6 +21,4 @@ export HISTCONTROL=ignoredups
 export HISTFILE=/Users/matt/.bash_history_jeppesen
 
 # start autojump (usage: type j)
-if [ -f $(brew --prefix)/etc/autojump ]; then
-  source $(brew --prefix)/etc/autojump
-fi
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
