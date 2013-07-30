@@ -2,8 +2,11 @@ export PS1="\W $ "
 set -o vi # vim keybindings
 
 export PATH=/usr/local/bin:$PATH
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-PATH=$PATH:/usr/local/share/npm/bin # Node package manager
+# for GAMS
+export PATH=$PATH:/Applications/GAMS/gams24.1_osx_x64_64_sfx/
+
+# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# PATH=$PATH:/usr/local/share/npm/bin # Node package manager
 
 export EDITOR='vi -f'
 
