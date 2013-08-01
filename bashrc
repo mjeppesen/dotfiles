@@ -1,4 +1,4 @@
-export PS1="\W $ "
+export PS1='\[\033[0;34m\]\W \[\033[0;32m\]$(__git_ps1) \[\033[0m\]$ '
 set -o vi # vim keybindings
 
 export PATH=/usr/local/bin:$PATH
