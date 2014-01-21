@@ -14,7 +14,7 @@ FORMAT="$HASH}$RELATIVE_TIME}$AUTHOR}$REFS $SUBJECT"
 pretty_git_log() {
   git log --graph --pretty="tformat:${FORMAT}" $* |
   # shorten 3 years ago" to "3 years"
-  # sed -Ee 's/^([^<]*) ago)/\1)/' |
+  sed -Ee 's/^([^<]*) ago)/\1)/' |
   column -t -s '}' |
   # page only if we need to
   less -F -X -R -S
