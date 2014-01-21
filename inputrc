@@ -1,1 +1,9 @@
 set editing-mode vi
+
+# Control-O:  history-search-backward
+# Up: history-search-backward
+# Down: history-search-forward
+
+"\e[A": history-search-backward
+"\C-o": history-search-backward
+"\e[B": history-search-forward
