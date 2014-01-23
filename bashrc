@@ -8,7 +8,8 @@ export PATH=$PATH:/Applications/GAMS/gams24.1_osx_x64_64_sfx
 # PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # PATH=$PATH:/usr/local/share/npm/bin # Node package manager
 
-export EDITOR='vi -f'
+# system vim exits with success exit code (0), works with git terminal
+export EDITOR=/usr/bin/vim
 export INPUTRC=~/.inputrc
 
 if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
