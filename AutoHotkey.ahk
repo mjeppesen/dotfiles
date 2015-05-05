@@ -41,17 +41,22 @@ return
 
 Esc::
 ;use global variable to keep track of state
-if CapsOn = false
-{
-CapsOn = true
-SetCapsLockState, on
-}
-else
-{
-CapsOn = false
+;if CapsOn = false
+;{
+;CapsOn = true
+;SetCapsLockState, on
+;}
+;else
+;{
+;CapsOn = false
+
 SetCapsLockState, off
-}
-return
+Suspend on
+Send, {ESC}
+Suspend off
+
+;}
+;return
 
 ^j::
 ; CTRL-J toggles between MAtlab and VIM
@@ -81,6 +86,16 @@ IfWinActive, ahk_class Vim
 	;Suspend on
 	;Send, {Esc}
 	;Suspend off
-	Send, Y^k	
+	Send, ^e^k
+}
+Return
+
+^i::
+IfWinActive, ahk_class Vim
+{
+	;Suspend on
+	;Send, {Esc}
+	;Suspend off
+	Send, yiw^k
 }
 Return
