@@ -69,6 +69,7 @@ WinActivate, ahk_class SunAwtFrame
 }
 
 ^k::
+; execute clipboard in Matlab
 IfWinActive, ahk_class Vim
 {
 	WinActivate, ahk_class SunAwtFrame	
@@ -80,8 +81,12 @@ IfWinActive, ahk_class Vim
 } 
 Return
 
+
+; Note: this needs me to vnoremap ^e to y (or something can't quite remember)
+; so that vim does the yank
+; Note the # means that the key works normally for other programs
 ^l::
-IfWinActive, ahk_class Vim
+#IfWinActive, ahk_class Vim
 {
 	;Suspend on
 	;Send, {Esc}
@@ -91,11 +96,11 @@ IfWinActive, ahk_class Vim
 Return
 
 ^i::
-IfWinActive, ahk_class Vim
+#IfWinActive, ahk_class Vim
 {
-	;Suspend on
-	;Send, {Esc}
-	;Suspend off
-	Send, yiw^k
+  ;Suspend on
+  ;Send, {Esc}
+  ;Suspend off
+  Send, yiw^k
 }
 Return
