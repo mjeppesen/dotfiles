@@ -56,7 +56,7 @@ Send, {ESC}
 Suspend off
 
 ;}
-;return
+return
 
 ^j::
 ; CTRL-J toggles between MAtlab and VIM
