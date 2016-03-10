@@ -13,13 +13,11 @@
 ; and it launches a new Notepad window (or activates an existing one).  To
 ; try out these hotkeys, run AutoHotkey again, which will load this file.
 
-;#z::Run www.autohotkey.com
-
 ;^!n::
 ;IfWinExist Untitled - Notepad
-	WinActivate
+;	WinActivate
 ;else
-	Run Notepad
+;	Run Notepad
 ;return
 
 
@@ -102,5 +100,13 @@ Return
   ;Send, {Esc}
   ;Suspend off
   Send, yiw^k
+}
+Return
+
+^t::
+#IfWinActive, ahk_class Vim
+{
+  WinActivate, ahk_class SunAwtFrame
+	Send, ^0runtests{Enter}
 }
 Return
