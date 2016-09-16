@@ -20,6 +20,14 @@
 ;	Run Notepad
 ;return
 
+#,::Volume_Down
+#.::Volume_Up
+#/::Volume_Mute
+
+#Space::
+Send, {Media_Play_Pause}
+Return
+
 
 ; Note: From now on whenever you run AutoHotkey directly, this script
 ; will be loaded.  So feel free to customize it to suit your needs.
@@ -110,3 +118,10 @@ Return
 	Send, ^0runtests{Enter}
 }
 Return
+
+;^r::
+;{
+;    Run Notepad
+;}
+;Return
+

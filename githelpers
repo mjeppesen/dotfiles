@@ -5,17 +5,16 @@
 
 HASH="%C(yellow dim)%h%C(reset)"
 RELATIVE_TIME="%C(dim green)%ar%C(reset)"
-AUTHOR="%C(dim blue)%an%C(reset)"
+AUTHOR="%Cblue)%an%C(reset)"
 REFS="%C(red)%d%C(reset)"
 SUBJECT="%s"
 
-FORMAT="$HASH}$RELATIVE_TIME}$AUTHOR}$REFS $SUBJECT"
+FORMAT="$HASH	$RELATIVE_TIME	$REFS $SUBJECT"
 
 pretty_git_log() {
   git log --graph --pretty="tformat:${FORMAT}" $* |
   # shorten 3 years ago" to "3 years"
   # sed -Ee 's/^([^<]*) ago)/\1)/' |
-  column -t -s '}' |
   # page only if we need to
   less -F -X -R -S
 }
