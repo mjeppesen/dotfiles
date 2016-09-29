@@ -47,41 +47,46 @@ Esc::
 ;else
 ;{
 ;CapsOn = false
-
 SetCapsLockState, off
 Suspend on
 Send, {ESC}
 Suspend off
 
 ;}
-return
+Return
 
 ^j::
 ; CTRL-J toggles between MAtlab and VIM
-IfWinActive, ahk_class SunAwtFrame
+If WinActive, ahk_class SunAwtFrame
 {
     WinActivate, ahk_class Vim
-    
-} else {
-WinActivate, ahk_class SunAwtFrame
+} else if WinActive, ahk_class SunAwtFrame
+{
+    WinActivate, ahk_class Vim
+} else
+{
+    Suspend on
+    Send, ^j
+    Suspend off
 }
+Return
 
 ^k::
 ; execute clipboard in Matlab
 IfWinActive, ahk_class Vim
 {
-	WinActivate, ahk_class SunAwtFrame	
-	Send, ^0^v{Enter}
-    	WinActivate, ahk_class ahk_class Vim
-} else if WinActive, ahk_class SunAwtFrame	
+    WinActivate, ahk_class SunAwtFrame
+    Send, ^0^v{Enter}
+    WinActivate, ahk_class ahk_class Vim
+} else ifWinActive, ahk_class SunAwtFrame
 {
-	Send, ^0^v{Enter}
+    Send, ^0^v{Enter}
 }
 else {
-	Suspend on
-	Send, ^k
-	Suspend off
-} 
+    Suspend on
+    Send, ^k
+    Suspend off
+}
 Return
 
 
@@ -98,15 +103,20 @@ Return
 }
 Return
 
-^i::
-#IfWinActive, ahk_class Vim
-{
-  ;Suspend on
-  ;Send, {Esc}
-  ;Suspend off
-  Send, yiw^k
-}
-Return
+;^i::
+;If WinActive, ahk_class Vim
+;{
+;  ;Suspend on
+;  ;Send, {Esc}
+;  ;Suspend off
+;  Send, yiw^k
+;} else
+;{
+;    Suspend on
+;    Send, ^i
+;    Suspend off
+;}
+;Return
 
 t::
 #IfWinActive, ahk_class Vim
