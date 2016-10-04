@@ -76,11 +76,15 @@ Return
 IfWinActive, ahk_class Vim
 {
     WinActivate, ahk_class SunAwtFrame
-    Send, ^0^v{Enter}
+
+    Send, ^0{Shift Down}{Home}{Shift Up}{Backspace}    
+    Send, ^v{Enter}
     WinActivate, ahk_class ahk_class Vim
 } else ifWinActive, ahk_class SunAwtFrame
 {
-    Send, ^0^v{Enter}
+    Send, ^0{Shift Down}{Home}{Shift Up}{Backspace}
+   
+    Send, ^v{Enter}
 }
 else {
     Suspend on
@@ -93,14 +97,21 @@ Return
 ; Note: this needs me to vnoremap ^e to y (or something can't quite remember)
 ; so that vim does the yank
 ; Note the # means that the key works normally for other programs
-^l::
-#IfWinActive, ahk_class Vim
+
+#IfWinActive ahk_class Vim
+:*?:,t::
 {
 	;Suspend on
 	;Send, {Esc}
 	;Suspend off
-	Send, ^e^k
+  Send, ^e^k
 }
+;else
+;{
+;  Suspend on
+;  Send, ,t
+;  Suspend off
+;}
 Return
 
 ;^i::
@@ -118,10 +129,10 @@ Return
 ;}
 ;Return
 
-t::
-#IfWinActive, ahk_class Vim
-{
-  WinActivate, ahk_class SunAwtFrame
-	Send, ^0runtests{Enter}
-}
-Return
+;t::
+;#IfWinActive, ahk_class Vim
+;{
+;  WinActivate, ahk_class SunAwtFrame
+;	Send, ^0runtests{Enter}
+;}
+;Return
