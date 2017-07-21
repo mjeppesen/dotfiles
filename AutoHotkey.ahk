@@ -47,49 +47,43 @@ Esc::
 ;else
 ;{
 ;CapsOn = false
+
 SetCapsLockState, off
 Suspend on
 Send, {ESC}
 Suspend off
 
 ;}
-Return
+return
 
-^j::
-; CTRL-J toggles between MAtlab and VIM
-If WinActive, ahk_class SunAwtFrame
-{
-    WinActivate, ahk_class Vim
-} else if WinActive, ahk_class SunAwtFrame
-{
-    WinActivate, ahk_class Vim
-} else
-{
-    Suspend on
-    Send, ^j
-    Suspend off
-}
-Return
+; ^j::
+; ; CTRL-J toggles between MAtlab and VIM
+; IfWinActive, ahk_class SunAwtFrame
+; {
+;     WinActivate, ahk_class Vim
+;
+; } else {
+; WinActivate, ahk_class SunAwtFrame
+; }
 
 ^k::
 ; execute clipboard in Matlab
 IfWinActive, ahk_class Vim
 {
-    WinActivate, ahk_class SunAwtFrame
-
-    Send, ^0{Shift Down}{Home}{Shift Up}{Backspace}
-    Send, ^v{Enter}
-    WinActivate, ahk_class ahk_class Vim
-} else ifWinActive, ahk_class SunAwtFrame
+	WinActivate, ahk_class SunAwtFrame
+	Send, ^0^0{Shift Down}{Home}{Shift Up}{Backspace}^v{Enter}
+    	WinActivate, ahk_class ahk_class Vim
+} else if WinActive, ahk_class SunAwtFrame
 {
-    Send, ^0{Shift Down}{Home}{Shift Up}{Backspace}
 
-    Send, ^v{Enter}
+        Send, ^0{Shift Down}{Home}{Shift Up}{Backspace}
+
+	Send, ^v{Enter}
 }
 else {
-    Suspend on
-    Send, ^k
-    Suspend off
+	Suspend on
+	Send, ^k
+	Suspend off
 }
 Return
 
@@ -97,62 +91,37 @@ Return
 ; Note: this needs me to vnoremap ^e to y (or something can't quite remember)
 ; so that vim does the yank
 ; Note the # means that the key works normally for other programs
-
-#IfWinActive ahk_class Vim
-;:*?:,t::
 ^l::
+#IfWinActive, ahk_class Vim
 {
 	;Suspend on
 	;Send, {Esc}
 	;Suspend off
-  Send, ^e^k
+	Send, ^e^k
 }
-;else
-;{
-;  Suspend on
-;  Send, ,t
-;  Suspend off
-;}
 Return
 
-#IfWinActive ahk_class Vim
-;:*?:,e::
 ^i::
+#IfWinActive, ahk_class Vim
 {
-	;Suspend on
-	;Send, {Esc}
-	;Suspend off
+  ;Suspend on
+  ;Send, {Esc}
+  ;Suspend off
   Send, yiw^k
 }
-;else
-;{
-;  Suspend on
-;  Send, ,t
-;  Suspend off
-;}
 Return
 
+^j::
+#IfWinActive, ahk_class Vim
+{
+  Send, {Escape}:w{Enter}
+  WinActivate, ahk_class SunAwtFrame
+    Send, {Home}^k^0 ; clear anything on matlab current line
+    ; the actual command or commands you want to run
 
+    Send, Config.run()
+    Send, {Enter}
+  WinActivate, ahk_class Vim
 
-;^i::
-;If WinActive, ahk_class Vim
-;{
-;  ;Suspend on
-;  ;Send, {Esc}
-;  ;Suspend off
-;  Send, yiw^k
-;} else
-;{
-;    Suspend on
-;    Send, ^i
-;    Suspend off
-;}
-;Return
-
-;t::
-;#IfWinActive, ahk_class Vim
-;{
-;  WinActivate, ahk_class SunAwtFrame
-;	Send, ^0runtests{Enter}
-;}
-;Return
+}
+Return
