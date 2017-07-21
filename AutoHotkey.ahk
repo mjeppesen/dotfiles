@@ -77,13 +77,13 @@ IfWinActive, ahk_class Vim
 {
     WinActivate, ahk_class SunAwtFrame
 
-    Send, ^0{Shift Down}{Home}{Shift Up}{Backspace}    
+    Send, ^0{Shift Down}{Home}{Shift Up}{Backspace}
     Send, ^v{Enter}
     WinActivate, ahk_class ahk_class Vim
 } else ifWinActive, ahk_class SunAwtFrame
 {
     Send, ^0{Shift Down}{Home}{Shift Up}{Backspace}
-   
+
     Send, ^v{Enter}
 }
 else {
@@ -99,7 +99,8 @@ Return
 ; Note the # means that the key works normally for other programs
 
 #IfWinActive ahk_class Vim
-:*?:,t::
+;:*?:,t::
+^l::
 {
 	;Suspend on
 	;Send, {Esc}
@@ -113,6 +114,25 @@ Return
 ;  Suspend off
 ;}
 Return
+
+#IfWinActive ahk_class Vim
+;:*?:,e::
+^i::
+{
+	;Suspend on
+	;Send, {Esc}
+	;Suspend off
+  Send, yiw^k
+}
+;else
+;{
+;  Suspend on
+;  Send, ,t
+;  Suspend off
+;}
+Return
+
+
 
 ;^i::
 ;If WinActive, ahk_class Vim
