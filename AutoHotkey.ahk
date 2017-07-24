@@ -114,14 +114,18 @@ Return
 ^j::
 #IfWinActive, ahk_class Vim
 {
-  Send, {Escape}:w{Enter}
-  WinActivate, ahk_class SunAwtFrame
-    Send, {Home}^k^0 ; clear anything on matlab current line
-    ; the actual command or commands you want to run
+    ; Save the current file
+    Send, {Escape}:w{Enter}
+    WinActivate, ahk_class SunAwtFrame
+    ; clear anything on matlab current line
+    Send, {Home}^k^0
 
-    Send, Config.run()
+    ; the actual command or commands you want to run
+    Send, tmp = PV_System; tmp.run()
     Send, {Enter}
-  WinActivate, ahk_class Vim
+
+    ; go back to vim
+    WinActivate, ahk_class Vim
 
 }
 Return
