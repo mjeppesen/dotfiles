@@ -114,17 +114,15 @@ Return
 ^j::
 #IfWinActive, ahk_class Vim
 {
-    ; Save the current file
-    Send, {Escape}:w{Enter}
-    WinActivate, ahk_class SunAwtFrame
-    ; clear anything on matlab current line
+    ; type really fast
+  SetKeyDelay, 0
+  Send, {Escape}:w{Enter}
+  WinActivate, ahk_class SunAwtFrame
+/* clear anything on matlab current line */
     Send, {Home}^k^0
-
-    ; the actual command or commands you want to run
-    Send, tmp = PV_System; tmp.run()
-    Send, {Enter}
-
-    ; go back to vim
+/* the actual command or commands you want to run */
+    Send, tmp = SimpleORM; tmp.run(){Enter}
+/* Send, {Enter} */
     WinActivate, ahk_class Vim
 
 }
