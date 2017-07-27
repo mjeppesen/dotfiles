@@ -41,49 +41,48 @@ Esc::
 ;use global variable to keep track of state
 ;if CapsOn = false
 ;{
-;CapsOn = true
-;SetCapsLockState, on
-;}
-;else
-;{
-;CapsOn = false
+    ;CapsOn = true
+        ;SetCapsLockState, on
+        ;}
+        ;else
+        ;{
+            ;CapsOn = false
 
-SetCapsLockState, off
-Suspend on
-Send, {ESC}
-Suspend off
+                SetCapsLockState, off
+                Suspend on
+                Send, {ESC}
+            Suspend off
 
-;}
-return
+                ;}
+                return
 
-; ^j::
-; ; CTRL-J toggles between MAtlab and VIM
-; IfWinActive, ahk_class SunAwtFrame
-; {
-;     WinActivate, ahk_class Vim
-;
-; } else {
-; WinActivate, ahk_class SunAwtFrame
-; }
+                ; ^j::
+                ; ; CTRL-J toggles between MAtlab and VIM
+                ; IfWinActive, ahk_class SunAwtFrame
+                ; {
+                    ;     WinActivate, ahk_class Vim
+                        ;
+                    ; } else {
+                        ; WinActivate, ahk_class SunAwtFrame
+                            ; }
 
-^k::
-; execute clipboard in Matlab
-IfWinActive, ahk_class Vim
+                            ^k::
+                            ; execute clipboard in Matlab
+                            IfWinActive, ahk_class Vim
 {
-	WinActivate, ahk_class SunAwtFrame
-	Send, ^0^0{Shift Down}{Home}{Shift Up}{Backspace}^v{Enter}
-    	WinActivate, ahk_class ahk_class Vim
+    WinActivate, ahk_class SunAwtFrame
+        Send, ^0^0{Shift Down}{Home}{Shift Up}{Backspace}^v{Enter}
+    WinActivate, ahk_class ahk_class Vim
 } else if WinActive, ahk_class SunAwtFrame
 {
 
-        Send, ^0{Shift Down}{Home}{Shift Up}{Backspace}
-
-	Send, ^v{Enter}
+    Send, ^0{Shift Down}{Home}{Shift Up}{Backspace}
+    Send, ^v{Enter}
 }
 else {
-	Suspend on
-	Send, ^k
-	Suspend off
+    Suspend on
+        Send, ^k
+        Suspend off
 }
 Return
 
@@ -92,37 +91,38 @@ Return
 ; so that vim does the yank
 ; Note the # means that the key works normally for other programs
 ^l::
-#IfWinActive, ahk_class Vim
+ifWinActive, ahk_class Vim
 {
-	;Suspend on
-	;Send, {Esc}
-	;Suspend off
-	Send, ^e^k
+    ;Suspend on
+        ;Send, {Esc}
+    ;Suspend off
+        Send, ^e^k
 }
 Return
 
 ^i::
-#IfWinActive, ahk_class Vim
+ifWinActive, ahk_class Vim
 {
-  ;Suspend on
-  ;Send, {Esc}
-  ;Suspend off
-  Send, yiw^k
+    ;Suspend on
+        ;Send, {Esc}
+    ;Suspend off
+        Send, yiw^k
 }
 Return
 
+
 ^j::
-#IfWinActive, ahk_class Vim
+ifWinActive, ahk_class Vim
 {
+
     ; type really fast
-  SetKeyDelay, 0
-  Send, {Escape}:w{Enter}
-  WinActivate, ahk_class SunAwtFrame
-/* clear anything on matlab current line */
-    Send, {Home}^k^0
-/* the actual command or commands you want to run */
-    Send, tmp = SimpleORM; tmp.run(){Enter}
-/* Send, {Enter} */
+        SetKeyDelay, 0.1
+        Send, {Escape}:w{Enter}
+    WinActivate, ahk_class SunAwtFrame
+;        /* clear anything on matlab current line */
+        Send, {Home}^k^0
+;        /* the actual command or commands you want to run */
+        Send, tmp = PV_System; tmp.run(){Enter}
     WinActivate, ahk_class Vim
 
 }
